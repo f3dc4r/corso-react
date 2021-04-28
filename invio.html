@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="ricezione.html" method="GET"> <!-- querystring - visibile nella barra degli indirizzi - method "GET" -->
+        Nome:<input type="text" name="nominativo">
+        Cognome<input type="text" name="cognome"> <br><br>
+
+        Ti piace il nuoto: <br>
+        SI<input type="radio" value="SI" name="nuoto">
+        NO<input type="radio" value="NO" name="nuoto">
+        Non ci ho mai pensato<input type="radio" value="NON SAPREI" name="nuoto"> 
+
+        <br><br>
+
+        Sesso:<br>
+        U<input type="radio" name="sesso" value="U">
+        D<input type="radio" name="sesso" value="D">
+
+        <br><br>
+
+        Città visitate:<br>
+        RM<input type="checkbox" name="citta" value="RM">
+        NA<input type="checkbox" name="citta" value="NA">
+        VE<input type="checkbox" name="citta" value="VE">
+
+        <br><br>
+
+        User<input type="text" name="utente">
+        Pass<input type="password" name="password">
+
+        <br><br>
+
+        <input type="file" name="nomefileinviato">
+
+        <br><br>
+        <input type="submit" value="Clicca per inviare i dati">
+    </form>
+</body>
+
+</html>

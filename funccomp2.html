@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+
+</head>
+<body>
+
+   <!-- <div id="root"></div>
+
+    <script type="text/babel">
+        function Comp2(props) // oggetto props contiene le proprietà utilizzabili nel componente
+        {
+            return <h1>Ciao da {props.tipo} e sto imparando: {props.valore}</h1>
+        }
+
+        ReactDOM.render(<Comp2 tipo="React" valore="Molto" />,document.getElementById("root"));
+    </script>-->
+
+    <div id="anni"></div>
+
+    <script type="text/babel">
+    function Tipoanni(props) {
+        var tipo = "";
+        if (parseInt(props.anni)>17)
+        {
+            return <div>
+                <h1>Caro Sig./Sig.ra : {props.nome}</h1>
+                <h1>Sei Maggiorenne e patentato</h1>
+                <h1>Puoi comprare la macchina</h1>
+            </div>
+        }
+        else
+        {
+            return <h4>Purtroppo essendo minorenne devi farti accompgnare</h4>;
+        }
+    }
+    
+    var anniinseriti = prompt("Quanti anni hai?");
+    var nominativo = prompt("Come ti chiami?");
+    ReactDOM.render(<Tipoanni anni={anniinseriti} nome={nominativo} />, document.getElementById("anni"));
+    </script>
+
+</body>
+</html>

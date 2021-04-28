@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esercizio per casa</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+</head>
+
+<body>
+
+    <!-- Creo i tre bottoni e richiamo la funzione innesta passando un parmatero differente per ogni bottone -->
+
+    <button onclick="innesta('Clienti')" style="background-color: blue; color: white; padding: 10px;">Clienti</button>
+    <button onclick="innesta('Banca')" style="background-color: blue; color: white; padding: 10px">Banca</button>
+    <button onclick="innesta('Magazzino')"
+        style="background-color: blue; color: white; padding: 10px">Magazzino</button>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function Compmenu(props) // functional component
+        {
+            switch (props.tipo) {  //creo una switch per decidere quale parte di codice far renderizzare
+                case "Clienti": return <div>
+                    <label>Nome:</label>
+                    <h4>{props.nome}</h4>
+                    <label>Cognome:</label>
+                    <h4>{props.cognome}</h4>
+                </div>;
+                    break;
+
+                case "Banca": return <div>
+                    <label>Banca:</label>
+                    <h4>{props.banca}</h4>
+                    <label>C/C:</label>
+                    <h4>IT1237987498</h4>
+                </div>;
+                    break;
+
+                case "Magazzino": return <div>
+                    <label>Indirizzo:</label>
+                    <h4>{props.indirizzo}</h4>
+                    <label>Nome:</label>
+                    <h4>{props.nome}</h4>
+                </div>;
+                    break;
+
+            }
+        }
+
+        var name = prompt("Inserire il proprio nome");
+        var surname = prompt("Inserire il proprio cognome");
+        var address = prompt("Inserire il proprio indirizzo");
+        var bank = prompt("Inserire nome della tua banca");
+
+        function innesta(tipologia) //funzione chiamata dall'evento onclick
+        {
+            ReactDOM.render(<Compmenu tipo={tipologia} nome={name} cognome={surname} indirizzo={address} banca={bank} />, document.getElementById("root"));
+        }
+
+    </script>
+
+</body>
+
+</html>

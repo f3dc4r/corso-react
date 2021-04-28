@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.js">
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+    class Controlloanni extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { anni: '', maggiorenne: ''};
+            this.controllaanni = this.controllaanni.bind(this);
+            this.stamparisultato = this.stamparisultato.bind(this);
+        }
+
+        controllaanni(annonascita) {
+            
+            var year = new Date();
+
+            var risultato = year.getFullYear() - annonascita.target.value;
+            
+            if (risultato > 17)
+            {
+                this.setState({anni: annonascita.target.value, maggiorenne: 'maggiorenne'});
+                // this.setState({maggiorenne: 'Sei maggiorenne'});
+            }
+            else{
+                this.setState({anni: annonascita.target.value, maggiorenne: 'minorenne'});
+                //this.setState({maggiorenne: 'Sei minorenne'}); 
+            }
+            
+        }
+
+        stamparisultato(evento){
+            alert(`Anno inserito: ${this.state.anni} 
+            Sei: ${this.state.maggiorenne}`);
+            evento.preventDefault();
+        }
+
+        render() {
+            return (
+                <form onSubmit={this.stamparisultato}>
+                    Anno di nascita:<input type="number" onChange={this.controllaanni} value={this.state.anni} />
+                    <input type="submit" />
+                </form>
+            )
+        }
+    }
+
+    ReactDOM.render(<Controlloanni />, document.getElementById("root"));
+
+</script>
+
+</html>

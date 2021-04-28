@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primo progetto in React</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+</head>
+
+<body>
+    <div style="background-color:aqua;" id="root"></div>
+    <div id="secondo" style="background-color: rgb(60, 206, 60);">Sono il secondo div</div>
+
+    <script>
+        // ReactDOM.render(oggettodainnestare,tagcontenitore); sintassi
+        ReactDOM.render(React.createElement( // cosa devo innestare
+                                        'label',{},'Contenuto del tag' // tag da innestare
+                        ),
+                        document.getElementById("root") // dove devo inserire
+        );
+
+        ReactDOM.render(React.createElement( // cosa devo innestare
+                                        'h1',{
+                                            style:{ fontSize:'larger'} // customizzazione del tag
+                                        },'Ciao mi trovo nel secondo DIV' // tag da innestare
+                        ),
+                        document.getElementById("secondo") // dove devo inserire
+        );
+
+
+    </script>
+
+    <div style="background-color: bisque;" id="terzo"></div>
+
+    <script type="text/babel">
+        var nuovotesto = <h1>Ciao da Babel</h1>;
+        ReactDOM.render(nuovotesto,document.getElementById("terzo"));
+
+    </script>
+
+    <div style="background-color: chocolate;" id="quarto"></div>
+
+    <script type="text/babel">
+        var nome= "Paolo";
+        var testo = <h1>Il mio nome è:{nome}</h1>;
+        ReactDOM.render(testo,document.getElementById("quarto"));
+    </script>
+
+
+</body>
+
+</html>

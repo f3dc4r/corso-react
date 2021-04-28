@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        class appartamento {
+            constructor(mq, indirizzo, costo) {
+                this.mq = mq;
+                this.indirizzo = indirizzo;
+                this.costo = costo;
+                this.costomq = function(){
+                    return costo / mq;
+                }
+            }
+        }
+
+        var parioli = new appartamento(80, "Viale Parioli, 189", 250000);
+        var colombo = new appartamento(60, "Via Mantegna, 18", 198000);
+
+        console.log(parioli.indirizzo);
+        console.log(colombo.indirizzo);
+
+        console.log(`Ai Parioli gli appartamenti costano al mq:${parioli.costomq()}`);
+        console.log(`Sulla Colombo gli appartamenti costano al mq:${colombo.costomq()}`);
+
+    </script>
+
+
+</body>
+
+</html>

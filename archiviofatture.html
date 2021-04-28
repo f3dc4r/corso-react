@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // classe fatture con costruttore
+
+        class fatture {
+            constructor(importo, tipologia) {
+                this.tipologia = tipologia;
+                this.importo = importo;
+                this.saldo = function () {
+                    switch (tipologia) {
+                        case "alimentari": return importo * 1.05;
+                            break;
+
+                        case "edilizia": return importo * 1.10;
+                            break;
+
+                        case "computer": return importo * 1.22;
+                            break;
+
+                        case "lusso": return importo * 1.40;
+                            break;
+
+                    }
+
+                }
+            }
+        }
+
+        let totale = [];    // inizializzo array con i saldi totali
+
+        // funzione crea nuova fattura
+        function nuovaFattura() {
+            // controllo se ho inserito un valore nel campo importo o se ho lasciato vuoto
+            if (document.getElementById('importo').value == 0 || document.getElementById('importo').value == undefined) {
+                alert("Devi inserire un importo!"); // avviso che bisogna inserire un importo
+                return;
+            }
+            else {
+                tipologia = document.getElementById('tipologia').value;
+                importo = document.getElementById('importo').value;
+                // genero un nuovo oggetto fatture e trasformo in numero intero l'importo
+                let nuovafat = new fatture(parseInt(importo), tipologia);
+                
+                var valore = nuovafat.saldo(); //assegno il saldo alla variabile valore
+
+                console.log(valore); //controllo il valore della fattura inserito
+
+                totale.push(valore); //inserisco il valore nell'array saldi
+                
+                //avviso che ho inserito una fattura
+                alert("Hai inserito una fattura di tipo " + nuovafat.tipologia + " del valore di: " + valore);
+                
+                //pulisco il campo importo per un nuovo inserimento
+                document.getElementById('importo').value = "";
+
+            }
+        }
+
+        
+        // funzione che calcola il saldo di tutte le fatture
+        function calcolaSaldo() {
+
+            // controllo se ho inserito almeno 1 fattura
+            if (totale.length == 0) {
+                alert("Non hai inserito fatture!");
+                return;
+            }
+            else {
+                // utilizzo la funzione che mi calcola tutti i valori di un Array e assegno il totale alla variabile tot
+                let tot = totale.reduce((previous, next) => {
+                    return previous + next;
+                });
+                // mostro nel campo saldo il totale fatture inserite
+                return document.getElementById('saldo').value = tot; 
+            }
+        }
+
+    </script>
+
+    <fieldset>
+        <label>Tipologia prodotto</label>
+        <select id="tipologia" name="tipologia">
+            <option value="alimentari">alimentari</option>
+            <option value="edilizia">edilizia</option>
+            <option value="computer">computer</option>
+            <option value="lusso">lusso</option>
+        </select>
+        <br>
+        <br>
+        <label>Importo</label>
+        <input type="number" placeholder="Inserisci importo fattura" name="importo" id="importo">
+        <br>
+        <br>
+        <button type="button" onclick="nuovaFattura()">Registra Fattura</button>
+    </fieldset>
+
+    <hr>
+
+
+    <div>
+        <button type="button" name="calcolaSaldo" onclick="calcolaSaldo()">Visualizza Saldo</button>
+        <br>
+        <br>
+        <textarea name="saldo" id="saldo"></textarea>
+    </div>
+</body>
+
+</html>

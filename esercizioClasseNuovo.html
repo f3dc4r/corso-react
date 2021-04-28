@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+</head>
+</head>
+<body>
+    <button onclick="vediNome()">Visualizza nome</button>
+    <button onclick="vediCognome()">Visualizza Nome e Cognome</button>
+    <button onclick="vediData()">Visualizza Nome Cognome e Data di nascita</button>
+    <button onclick="vediLavoro()">Visualizza Nome Cognome Data di Nascita e Lavoro</button>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+    
+    class Persona extends React.Component {
+    constructor(props)
+    {
+        super(props);
+
+    }
+    render() {
+        return (
+            <div>
+                <h1>{this.props.nome}</h1>
+                <h1>{this.props.cognome}</h1>
+                <h1>{this.props.datanascita}</h1>
+                <h1>{this.props.lavoro}</h1>
+            </div>
+        )
+    }
+}
+
+var chiedinome = prompt('Come ti chiami?');
+var chiedicognome = prompt('Il tuo cognome?');
+var chiedinascita = prompt('Data di nascita?');
+var chiedilavoro = prompt('Che lavoro fai?');
+
+function vediNome ()
+    {
+        ReactDOM.render(<Persona nome={chiedinome} />, document.getElementById("root"));
+    }
+
+function vediCognome ()
+    {
+        ReactDOM.render(<Persona nome={chiedinome} cognome={chiedicognome} />, document.getElementById("root"));
+    }
+
+function vediData ()
+    {
+        ReactDOM.render(<Persona nome={chiedinome} cognome={chiedicognome} datanascita={chiedinascita} />, document.getElementById("root"));
+    }
+
+function vediLavoro ()
+    {
+        ReactDOM.render(<Persona nome={chiedinome} cognome={chiedicognome} datanascita={chiedinascita} lavoro={chiedilavoro} />, document.getElementById("root"));
+    }
+
+</script>
+</body>
+</html>

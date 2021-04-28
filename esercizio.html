@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esercizio in REACT</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+     <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+</head>
+<body>
+    <div id="primo" style="width: 100%; height: 100px; background-color: blue;"></div>
+    <div id="secondo" style="width:20%; height: 300px; background-color: yellow; float: left;"></div>
+    </nav>
+    <div id="terzo" style="width:80%; height: 300px; background-color: green; float: left;"></div>
+
+    <script type="text/babel">
+        var testo1 = "Sono un testo in maiuscolo"; 
+        var First = function() {
+            return <h1>{testo1.toUpperCase()}</h1>;
+        }
+        ReactDOM.render(<First />, document.getElementById("primo"));
+
+        var Second = function() {
+            return <h2>Qui va il menù</h2>;
+            
+        }
+        ReactDOM.render(<Second />, document.getElementById("secondo"));
+
+        var Third = function() {
+            return <h2>TESTO DI PROVA PER VERIFICARE SE ABBIAMO COMPRESO LA MODALITA’ ARCHITETTONICA CON CUI LAVORA E COSTRUISCE I COMPONENTI REACT</h2>;
+            
+        }
+        ReactDOM.render(<Third />, document.getElementById("terzo"));
+
+
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var auto = {
+            marca: "FIAT",
+            cilindrata: 1500,
+            posti: 5,
+            consumi:function(litri){
+                return 100/litri;
+            },
+            dettagli:function(ll){
+                return this.marca + " - " + this.cilindrata + " - " + this.posti;
+            }
+        }
+
+        var auto1 = {
+            marca:"VW",
+            cilindrata: 1980,
+            posti: 5,
+            consumi:function(litri){
+                return 100/litri;
+            }
+        }
+
+        auto.cilindrata = 2100;
+
+        console.log(typeof auto);
+        console.log(auto.marca);
+        console.log(auto1.marca);
+
+        
+
+        var auto3 = auto;
+        console.log(auto3.marca);
+
+        auto3.posti = 7;
+        console.log(auto.posti);
+
+        console.log("La fiat consuma " + auto.consumi(7) + " Km al litro");
+        console.log("La VW consuma per 100 km " + auto1.consumi(4));
+
+        auto.colore="Celeste";
+
+        console.log(auto.colore);
+        
+        console.log(auto.dettagli);
+    </script>
+</body>
+</html>

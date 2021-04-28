@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=B8DuoK6MiCum9WHSkgxVzytkC5PC0JxmI5cE_xTDMBLX05RtskS6e-hCXZjyFpEaEpt_3ABhVcCFpvZ8Kie1MLq8dF3VpOh8muwvXNjHwUfDgyZtrE-tnuzALcFLNuoP" charset="UTF-8"></script><script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.js">
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+</body>
+
+<script type="text/babel">
+
+    const viaggi = [
+        { id: 1, Partenza: "Roma", Arrivo: "Napoli", kmpercorsi: 350, carrozze: 8 },
+        { id: 2, Partenza: "Genova", Arrivo: "Milano", kmpercorsi: 296, carrozze: 6 },
+        { id: 3, Partenza: "Napoli", Arrivo: "Venezia", kmpercorsi: 780, carrozze: 10 },
+        { id: 4, Partenza: "Como", Arrivo: "Bari", kmpercorsi: 920, carrozze: 10 },
+    ];
+
+    const viaggierogati = viaggi.map(
+        (viaggio) =>
+            <tr key={viaggio.id}>
+                <td>{viaggio.Partenza}</td>
+                <td>{viaggio.Arrivo}</td>
+                <td>{viaggio.kmpercorsi}</td>
+                <td>{viaggio.carrozze}</td>
+            </tr>
+    )
+
+    class Viaggi extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { partenza: "" };
+        }
+
+        filtra(oggetto) {
+            this.setState({ partenza: oggetto.target.value })
+        }
+
+        render() {
+
+            let viaggirappresentati = viaggi;
+
+            viaggirappresentati = viaggi.filter(
+                (partenza) => 
+                partenza.Partenza.indexOf(this.state.partenza) >= 0
+            )
+
+            let viaggirighe = viaggirappresentati.map(
+                (viaggio) =>
+                    <tr key={viaggio.id}>
+                        <td>{viaggio.Partenza}</td>
+                        <td>{viaggio.Arrivo}</td>
+                        <td>{viaggio.kmpercorsi}</td>
+                        <td>{viaggio.carrozze}</td>
+                    </tr>
+            )
+
+            return (
+                <div>
+                    <div>
+                        <form >
+                            <label >Stazione di partenza</label>
+                            <input type="text" value={this.state.partenza}
+                                onChange={this.filtra.bind(this)} />
+                        </form>
+                    </div>
+                    <div>
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <td>Partenza</td>
+                                    <td>Arrivo</td>
+                                    <td>Km Percorsi</td>
+                                    <td>Numero carrozze</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {viaggirighe}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <form >
+                            Stazione di partenza<input type="text" /> <br />
+                        Stazione di arrivo<input type="text" /> <br />
+                        Km percorsi<input type="text" /> <br />
+                        Numero carrozze<input type="text" /> <br />
+
+                        </form>
+                    </div>
+                </div>
+            )
+
+        }
+    }
+
+    ReactDOM.render(<Viaggi />, document.getElementById("root"));
+
+</script>
+
+</html>

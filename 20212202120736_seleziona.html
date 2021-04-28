@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=jKJNOwygqZAf4pRbUs_0ZxpMCSBgMSitiNKLEq_WNqwhzewV1xt9lAJuDSg_tL_f28VuT5dMDx-bLVIc4NoYBSIdkC0m6qo2ia6gMNnbUpKb8tZk4zjr79rvlLtKTfGl" charset="UTF-8"></script><script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.js">
+    </script>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+</body>
+
+<script type="text/babel">
+
+    class Seleziona extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { frutta: "Mela", kg: 0, totale: 0 };
+            this.cambiafrutto = this.cambiafrutto.bind(this);
+            this.cambiakg = this.cambiakg.bind(this);
+        }
+
+        cambiafrutto(oggetto) {
+            this.setState({ frutta: oggetto.target.value });
+        }
+
+        cambiakg(oggetto) {
+            this.setState({ kg: oggetto.target.value });
+            let chili = parseInt(oggetto.target.value);
+            let costokg = 0;
+            switch (this.state.frutta) {
+                case "Mela":
+                    costokg = 2;
+                    break;
+                case "Susina":
+                    costokg = 5;
+                    break;
+                case "Melone":
+                    costokg = 7;
+                    break;
+                case "Arancio":
+                    costokg = 1;
+                    break;
+            }
+            this.setState({ totale: chili * costokg });
+        }
+
+
+        render() {
+            return (
+                <div>
+                    <form action="">
+                        <select onChange={this.cambiafrutto} value={this.state.frutta}>
+                            <option value="Mela">Mela</option>
+                            <option value="Susina">Susina</option>
+                            <option value="Melone">Melone</option>
+                            <option value="Arancio">Arancio</option>
+                        </select>
+                        <label >Kg</label>
+                        <input type="number" onChange={this.cambiakg} value={this.state.kg} />
+                    </form>
+                    <label>Il tuo frutto preferito è:{this.state.frutta}</label>
+                    <label >Totale spesa:{this.state.totale}</label>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Seleziona />, document.getElementById("root"));
+
+
+</script>
+
+</html>

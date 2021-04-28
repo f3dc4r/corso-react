@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+</body>
+
+<script>
+
+    var elemento = React.createElement; //creo un oggetto component di tipo React
+    class oggettouno extends React.Component //un nuovo oggetto che eredita TUTTO di React.Component
+    {
+        constructor() {
+            super();
+            this.state = { cliccato: false } //abbiamo creato uno stato dell'oggetto
+        }
+
+        render() {
+
+            if (this.state.cliccato) //abbiamo verificato lo stato di cliccato
+            {
+                return elemento(
+                    'h1',{},'Sono stato creato dalla variazione dello stato del componente'
+                )
+            }
+
+            return elemento(
+                'button',
+                {
+                    onClick:()=>this.setState({ cliccato:true })
+                },
+                'Sono un pulsante con Class Component'
+            )
+        }
+    }
+
+ReactDOM.render(elemento(oggettouno),document.getElementById("root"));
+
+</script>
+
+</html>

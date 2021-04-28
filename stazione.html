@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.js">
+    </script>
+
+
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+    const viaggi = [
+        { id: 1, Partenza: "Roma", Arrivo: "Napoli", kmpercorsi: 350, numcarrozze: 8 },
+        { id: 2, Partenza: "Genova", Arrivo: "Milano", kmpercorsi: 296, numcarrozze: 6 },
+        { id: 3, Partenza: "Napoli", Arrivo: "Venezia", kmpercorsi: 780, numcarrozze: 10 },
+        { id: 4, Partenza: "Como", Arrivo: "Bari", kmpercorsi: 780, numcarrozze: 10 },
+    ];
+
+    // console.log(viaggi.length); 
+
+    const listaviaggi = viaggi.map(
+        (viaggio) => <tr key={viaggio.id}>
+            <td>{viaggio.Partenza}</td>
+            <td>{viaggio.Arrivo}</td>
+            <td>{viaggio.kmpercorsi}</td>
+            <td>{viaggio.numcarrozze}</td>
+        </tr>
+    )
+
+    class ViaggiareInTreno extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                partenza: "",
+                partenzanew: "",
+                arrivonew: "",
+                kmpercorsinew: 0,
+                numerocarrozzenew: 0,
+                filtrocarrozze: 0
+            }
+        }
+
+        filtra(oggetto) {
+            this.setState({ partenza: oggetto.target.value });
+        }
+
+        filtracarrozze(numero) {
+            this.setState({ filtrocarrozze: numero.target.value });
+        }
+
+        nuovopartenza(testo) {
+            this.setState({ partenzanew: testo.target.value });
+        }
+
+        nuovoarrivo(testo) {
+            this.setState({ arrivonew: testo.target.value });
+        }
+
+        nuovocarrozze(numero) {
+            this.setState({ numerocarrozzenew: numero.target.value });
+        }
+
+        nuovokm(numero) {
+            this.setState({ kmpercorsinew: numero.target.value });
+        }
+
+        nuovoviaggio(newviaggio) {
+
+            //alert(this.state.numerocarrozzenew);
+            let start = this.state.partenzanew;
+            let end = this.state.arrivonew;
+            let km = this.state.kmpercorsinew;
+            let numeroCarrozze = this.state.numerocarrozzenew;
+
+            // estraggo il numero massimo di un valore in un array(json)
+            let massimo_valore_in_archivio = Math.max.apply(
+                Math,
+                viaggi.map( //nome array da controllare
+                    function (numero) { //numero è un nome arbitratio che uso per la funzione anonima
+                        return numero.id // il campo che dovrà tornare di cui cerco il massimo valore
+                    }
+                )
+            )
+
+            //console.log(massimo_valore_in_archivio); numero massimo di valori ID nel json
+            // non confondere con il numero di ID presenti
+
+            massimo_valore_in_archivio++;
+
+            let viaggionuovo = {
+                id: massimo_valore_in_archivio,
+                Partenza: start,
+                Arrivo: end,
+                kmpercorsi: km,
+                numcarrozze: numeroCarrozze
+            }
+
+            viaggi.push(viaggionuovo);
+
+            newviaggio.preventDefault();
+        }
+
+        render() {
+            if ()
+            let viaggirappresentati = viaggi;
+
+            viaggirappresentati = viaggi.filter(
+                (partenza) => partenza.Partenza.toUpperCase().indexOf(this.state.partenza.toUpperCase()) >= 0
+            )
+
+            let viaggirighe = viaggirappresentati.map(
+                (viaggio) =>
+                    <tr key={viaggio.id}>
+                        <td>{viaggio.Partenza}</td>
+                        <td>{viaggio.Arrivo}</td>
+                        <td>{viaggio.kmpercorsi}</td>
+                        <td>{viaggio.numcarrozze}</td>
+                    </tr>
+
+            )
+
+
+            let carrozzeminime = viaggi;
+
+            let numerominimo = this.state.filtrocarrozze;
+
+            carrozzeminime = viaggi.filter(
+                (carrozze) => carrozze.numcarrozze >= numerominimo
+            )
+
+            console.log(carrozzeminime);
+
+            let carrozzerighe = carrozzeminime.map(
+                (viaggio) =>
+                    <tr key={viaggio.id}>
+                        <td>{viaggio.Partenza}</td>
+                        <td>{viaggio.Arrivo}</td>
+                        <td>{viaggio.kmpercorsi}</td>
+                        <td>{viaggio.numcarrozze}</td>
+                    </tr>
+
+            )
+
+
+            return (
+                <div>
+                    <div>
+                        <form>
+                            <label>Stazione di partenza</label>
+                            <input type="text" value={this.state.partenza} onChange={this.filtra.bind(this)} />
+                        </form>
+                    </div>
+
+                    <div>
+                        <form>
+                            <label>Numero carrozze</label>
+                            <input type="number" value={this.state.filtrocarrozze} onChange={this.filtracarrozze.bind(this)} />
+                        </form>
+                    </div>
+
+                    <div>
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <td>Partenza</td><td>Arrivo</td><td>Km Percorsi</td><td>Carrozze</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {viaggirighe}
+                                {carrozzerighe}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div>
+                        <form onSubmit={this.nuovoviaggio.bind(this)}>
+                            Stazione di partenza<input type="text" onChange={this.nuovopartenza.bind(this)} value={this.state.partenzanew} /><br />
+                            Stazione di arrivo<input type="text" onChange={this.nuovoarrivo.bind(this)} value={this.state.arrivonew} /><br />
+                            Km percorsi<input type="text" onChange={this.nuovokm.bind(this)} value={this.state.kmpercorsinew} /><br />
+                            Numero carrozze<input type="text" onChange={this.nuovocarrozze.bind(this)} value={this.state.numerocarrozzenew} /><br />
+                            <input type="submit" value="Aggiungi viaggio" />
+                        </form>
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<ViaggiareInTreno />, document.getElementById("root"));
+</script>
+
+</html>

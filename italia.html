@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.js">
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+const Regione = [
+    {id:1, regione:"Lazio"},
+    {id:2, regione:"Campania"},
+    {id:3, regione:"Puglia"},
+    {id:4, regione:"Sicilia"},
+    {id:5, regione:"Toscana"}
+];
+
+const Lazio=[
+    {id: 1, nome:"Roma"},
+    {id: 2, nome:"Viterbo"},
+    {id: 3, nome:"Latina"},
+    {id: 4, nome:"Forsinone"},
+    {id: 5, nome:"Rieti"},
+];
+
+const Campania=[
+    {id: 1, nome:"Napoli"},
+    {id: 2, nome:"Salerno"},
+    {id: 3, nome:"Avellino"},
+    {id: 4, nome:"Benevento"},
+    {id: 5, nome:"Caserta"},
+];
+
+const Puglia=[
+    {id: 1, nome:"Bari"},
+    {id: 2, nome:"Lecce"},
+    {id: 3, nome:"Brindisi"},
+    {id: 4, nome:"Taranto"},
+    {id: 5, nome:"Foggia"},
+];
+
+const Sicilia=[
+    {id: 1, nome:"Palermo"},
+    {id: 2, nome:"Catania"},
+    {id: 3, nome:"Messina"},
+    {id: 4, nome:"Trapani"},
+    {id: 5, nome:"Siracusa"},
+];
+
+const Toscana=[
+    {id: 1, nome:"Firenze"},
+    {id: 2, nome:"Siena"},
+    {id: 3, nome:"Prato"},
+    {id: 4, nome:"Arezzo"},
+    {id: 5, nome:"Pisa"},
+];
+
+const listaregioni = Regione.map(
+    (regione) => <option key={regione.id} value={regione.regione} >{regione.regione}</option>
+)
+
+    class Italia extends React.Component {
+        constructor(props){
+            super(props);
+            this.state = {region: 'Lazio'}
+        }
+
+        cambiaregione (oggetto){
+            this.setState({region: oggetto.target.value});
+        }
+
+        render() {
+
+            let cittadavedere = [];
+
+            switch (this.state.region) {
+                case 'Lazio':
+                    cittadavedere = Lazio;
+                    break;
+                
+                case 'Campania':
+                    cittadavedere = Campania;
+                    break;
+
+                case 'Sicilia':
+                    cittadavedere = Sicilia;
+                    break;
+
+                case 'Toscana':
+                    cittadavedere = Toscana;
+                    break;
+
+                default:
+                    cittadavedere = Puglia;
+                    break;
+            }
+
+            let visualizzacitta = cittadavedere.map(
+                (citta) => <option key={citta.id} value={citta.nome}>{citta.nome}</option>
+            )
+
+            return (
+                <form>
+                    <label>Scegliere una regione</label>
+                    <select value={this.state.region} onChange={this.cambiaregione.bind(this)}>
+                        {listaregioni}
+                    </select> 
+                    <br/>
+                    <label>Selezionare una città della regione: {this.state.region}</label>
+                    <select>
+                        {visualizzacitta}
+                    </select>
+                </form>
+            )
+        }
+    }
+
+    ReactDOM.render(<Italia />, document.getElementById("root"));
+
+</script>
+
+</html>

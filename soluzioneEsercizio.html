@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+</head>
+
+<body>
+
+    <button onclick="vediClienti()">Cliente</button>
+    <button onclick="vediBanca()">Banca</button>
+    <button onclick="vediMagazzino()">Magazzino</button>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function Cliente() {
+            return <div>
+                Nome: <h1 for="">Nome del cliente</h1>
+                Cognome: <h1 for="">Cognome del cliente</h1>
+            </div>;
+        }
+
+        function Banca() {
+            return <div>
+                Banca: <h1 for="">Nome banca</h1>
+                C/C: <h1 for="">10203040</h1>
+            </div>;
+        }
+
+        function Magazzino() {
+            return <div>
+                Indirizzo: <h1>Indirizzo del magazzino</h1>
+                Nome: <h1>Nome del magazzino</h1>
+            </div>;
+        }
+
+        // creo un componente cliente e lo invio alla renderizzazione
+        function vediClienti() {
+            var componente = <Cliente />;
+            creaoggetti(componente);
+        }
+        
+        // creo un componente banca e lo invio alla renderizzazione
+        function vediBanca() {
+            var componente = <Banca />;
+            creaoggetti(componente);
+        }
+        // creo un componente magazzino e lo invio alla renderizzazione
+        function vediMagazzino() {
+            var componente = <Magazzino />;
+            creaoggetti(componente);
+        }
+
+
+        //creo l'innesto del componente che arriva dalle funzioni
+        function creaoggetti(comp) {
+            ReactDOM.render(comp, document.getElementById("root"));
+        }
+
+    </script>
+
+</body>
+
+</html>

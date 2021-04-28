@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript"
+        src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=iEZQbj4AgAG-YI2smkiUonNnqY0co3Qp8WOjW21A3I27mTiFcjMeMXK4PpK2a_pkRjwF963wL8Gx53215Ds-eeJWDt3rDax2zSMuSdOV1SzLmfhN7WIk3JCSWsCo0pAv"
+        charset="UTF-8"></script>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.js">
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+    class Inserimento extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { nominativo: 'Giambattista', cognome: 'Rossi' };
+            this.cambianome = this.cambianome.bind(this);
+            this.verifica = this.verifica.bind(this);
+            this.cambiacognome = this.cambiacognome.bind(this);
+        }
+
+        cambianome(oggettonome) {
+            if (oggettonome.target.value == "Mario")
+            {
+                this.setState({cognome: 'Rossi'});
+            }
+            this.setState({nominativo: oggettonome.target.value}); //sto modificando il valore
+        }
+
+        verifica(evento){
+            alert(`Il nome è: ${this.state.nominativo} e il cognome è: ${this.state.cognome}`);
+            evento.preventDefault();
+        }
+
+        cambiacognome(evento) {
+            this.setState({cognome: evento.target.value});
+        }
+
+        render() {
+            return (
+                <form onSubmit={this.verifica}>
+                    Nome<input type="text" onChange={this.cambianome} value={this.state.nominativo} />
+                    <input type="text" onChange={this.cambiacognome} />
+                    <input type="submit" />
+                </form>
+            )
+        }
+    }
+
+    ReactDOM.render(<Inserimento />, document.getElementById("root"));
+
+</script>
+
+</html>

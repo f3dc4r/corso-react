@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        alert("sono un semplice messaggio");
+        var citta = prompt("In quale città sei nato?");
+
+        switch (citta)
+        {
+            case "roma":
+            case "viterbo":
+            case "latina":
+            case "frosinone":
+            case "rieti":
+                alert("sei nato nel lazio");
+                break;
+            
+            case "genova":
+                alert("sei nato in liguria");
+                break;
+            
+            case "palermo":
+                alert("sei nato in sicilia");
+                break;
+
+            
+            
+            default:
+                alert ("città non gestita");
+                break;
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+</head>
+<body>
+    <div id="rootfunctional"></div>
+    <div id="rootclass"></div>
+</body>
+
+<script type="text/babel">
+
+
+// orologio gestito con un componente semplice
+
+function orologio() {
+    var element = (
+        <div>
+            <h1>Orologio gestito con una funzione</h1>
+            <h2>Ora esatta:{new Date().toLocaleTimeString()}</h2>
+        </div>
+    )
+    ReactDOM.render(element, document.getElementById("rootfunctional"));
+}
+
+setInterval(orologio, 1000);
+
+
+// orologio gestito con una classe
+
+class Clockclass extends React.Component {
+    constructor(props)
+    {
+        super(props);
+
+    }
+    render() {
+        return (
+            <div>
+                <h1>Ora gestita mediante un class component</h1>
+                <h2>Orario esatto: {this.props.date.toLocaleTimeString()}</h2>
+            </div>
+        )
+    }
+}
+
+function clockclass()
+    {
+        ReactDOM.render(<Clockclass date={new Date()} />, document.getElementById("rootclass"));
+    }
+
+setInterval(clockclass, 1000);
+</script>
+
+</html>

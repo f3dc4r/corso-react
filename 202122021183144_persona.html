@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=iEZQbj4AgAG-YI2smkiUonNnqY0co3Qp8WOjW21A3I27mTiFcjMeMXK4PpK2a_pkRjwF963wL8Gx53215Ds-eeJWDt3rDax2zSMuSdOV1SzLmfhN7WIk3JCSWsCo0pAv" charset="UTF-8"></script><script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.js">
+    </script>
+
+</head>
+
+<body>
+    <button onclick="vedi(0)">Visualizza Nome</button>
+    <button onclick="vedi(1)">Visualizza Nome e cognome</button>
+    <button onclick="vedi(2)">Visualizza Nome e cognome e data di nascita</button>
+    <button onclick="vedi(3)">Visualizza Nome e cognome e data di nascita e lavoro</button>
+
+    <div id="radice"></div>
+
+</body>
+
+<script type="text/babel">
+
+    class Nome extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+             return <div>
+                    <h1>Ciao {this.props.nome}</h1>
+                    <Piacevole nome={this.props.nome} />
+                </div>
+            return <h1>{this.props.nome}</h1>
+        }
+    }
+
+    class Piacevole extends React.Component {
+        constructor(props){
+            super(props);
+        }
+        render ()
+            {
+                if (this.props.nome == "Marcello"){
+                    return <h4>Il nome non mi piace</h4>;
+                }
+                return <h2>Complimenti bel nome</h2>
+            }
+    }
+
+    class Cognome extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+            return <h1>Rossi </h1>
+        }
+    }
+
+    class Nascita extends React.Component {
+        constructor() {
+            super();
+        }
+        render() {
+            return <h1>15/05/2000 </h1>
+        }
+    }
+
+    class Lavoro extends React.Component {
+        constructor() {
+            super();
+        }
+        render() {
+            return <h1>Impiegato </h1>
+        }
+    }
+
+
+    class Person extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+            var oggetto = <Nome nome={this.props.nome} />;
+            if (this.props.tipo == 1) {
+                var oggetto2 = <Cognome />
+            }
+            else if (this.props.tipo == 2) {
+                var oggetto2 = <Cognome />
+                var oggetto3 = <Nascita />;
+            }
+            else if (this.props.tipo == 3) {
+                var oggetto2 = <Cognome />
+                var oggetto3 = <Nascita />;
+                var oggetto4 = <Lavoro />;
+            }
+
+
+            return <div>{oggetto} {oggetto2} {oggetto3} {oggetto4}</div >;
+        }
+
+    }
+
+    function vedi(tipologia) {
+        var nominativo = prompt("Qual'è il tuo nome?");
+        ReactDOM.render(<Person tipo={tipologia} nome={nominativo} />, document.getElementById("radice"));
+
+    }
+
+
+</script>
+
+</html>

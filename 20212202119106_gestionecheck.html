@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=KnAd6F2Qavp3Lm-kPORUk2CL3nz1FdI1U0glmPMcKJ4w2TyYRRkz8BGyt8JyQfU0pKmtrBKBt0NJDkKrSt122noIO_h-sHDlCnJj9cqnLX_AX7cm7dY061zwmrVQ582m0RRKFfyd_XYOyBusT__uEg" charset="UTF-8"></script><script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.js">
+    </script>
+
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+</body>
+
+<script type="text/babel">
+
+    class CheckBox extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { cittapreferite: [] }
+            //this.aggiungicheck = this.aggiungicheck.bind(this);
+        }
+
+        aggiungicheck(oggetto) {
+            let scelte = this.state.cittapreferite;
+            let nuovalista = [];
+
+            if (oggetto.target.checked) {
+                scelte.push(oggetto.target.value);
+                nuovalista = scelte;
+            }
+            else {
+                for (let ogg of scelte) {
+                    if (ogg != oggetto.target.value) {
+                        nuovalista.push(ogg);
+                    }
+                }
+            }
+            //assetno il valore allo state cittapreferite
+            this.setState({ cittapreferite: nuovalista });
+
+            //ciclo le città dello state
+            for (let obj of this.state.cittapreferite)
+            {
+                console.log(obj);
+            }            
+        }
+
+        render() {
+            return (
+                <div>
+                    <input name="citta" onChange={this.aggiungicheck.bind(this)} type="checkbox" value="Milano" />Città:Milano <br />
+                    <input name="citta" onChange={this.aggiungicheck.bind(this)} type="checkbox" value="Palermo" />Città:Palermo <br />
+                    <input name="citta" onChange={this.aggiungicheck.bind(this)} type="checkbox" value="Venezia" />Città:Venezia <br />
+                    <input name="citta" onChange={this.aggiungicheck.bind(this)} type="checkbox" value="Roma" />Città:Roma <br />
+                    <label>Città preferite:{this.state.cittapreferite.length}</label>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<CheckBox />, document.getElementById("root"))
+
+
+
+</script>
+
+</html>

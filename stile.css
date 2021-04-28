@@ -1,0 +1,29 @@
+.Bordomio{
+    padding: 10px 10px;
+    border: 10px solid;
+}
+
+.Bordomio-blue{
+    border-color: blue;
+}
+
+.Bordomio-red{
+    border-color: red;
+    font-size: 10px;
+}
+
+.Bordomio-green{
+    border-color: green;
+}
+
+.sfondo-red{
+    background-color: red;
+}
+
+.sfondo-green{
+    background-color: green;
+}
+
+.sfondo-blue{
+    background-color: blue;
+}

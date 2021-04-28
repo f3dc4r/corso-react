@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+class Seleziona extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={frutta:"", spesa:0, kg:0};
+        this.cambiafrutto = this.cambiafrutto.bind(this);
+        this.cacolaspesa = this.calcolaspesa.bind(this);
+    }
+
+    cambiafrutto(oggetto){
+        this.setState({frutta: oggetto.target.value})
+    }
+
+    calcolaspesa(calcola){
+        alert(calcola.target.value);
+
+        if (this.state.frutta == "Mela")
+        {   
+            this.setState({spesa: parseInt(calcola.target.value) * 2});
+        }
+        else if (this.state.frutta == "Susina")
+        {
+            this.setState({spesa: parseInt(calcola.target.value) * 5}); 
+        }
+        else if (this.state.frutta == "Melone")
+        {
+            this.setState({spesa: parseInt(calcola.target.value) * 7}); 
+        }
+        else {
+            this.setState({spesa: parseInt(calcola.target.value) * 1});
+        }
+    }
+
+    render() {
+        return (
+            <div>
+            <form action="">
+                <select name="" id="" onChange={this.cambiafrutto} value={this.state.frutta}>
+                    <option value="Mela">Mela</option>
+                    <option value="Susina">Susina</option>
+                    <option value="Melone">Melone</option>
+                    <option value="Arancio">Arancio</option>
+                </select>
+                <br></br>
+                Quanti Kg ho comprato:<input type="number" onChange={this.calcolaspesa}></input>
+            </form>
+            <label>Hai speso:{this.state.spesa}</label>
+            </div>
+            
+        )
+    }
+}
+
+ReactDOM.render(<Seleziona />, document.getElementById("root"));
+
+</script>
+
+</html>

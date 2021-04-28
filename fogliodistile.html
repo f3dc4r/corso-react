@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.js">
+    </script>
+    <link rel="stylesheet" href="stile.css">
+</head>
+<body>
+    <div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+function Bordo(propsmio){
+    return (
+        <div className={'Bordomio Bordomio-' + propsmio.colore + ' sfondo-' + propsmio.colsfondo}>
+            <h3>Sono il componente figlio</h3> 
+            {propsmio.children}  
+        </div>
+    )
+}
+
+function FinestraGenerale() {
+    return (
+        <div>
+            <Bordo colore="red" colsfondo="blue">
+                <ul>
+                    <li>Carla</li>
+                    <li>Stefania</li>
+                    <li>Carmelo</li>
+                </ul>
+            </Bordo>
+            <Bordo colore="green" colsfondo="red">
+                <h5>Sono un componente figlio dichiarato nel componente padre</h5>
+            </Bordo>
+            <Bordo colore="blue" colsfondo="green"> 
+                <h1>Sono il testo del componente padre</h1> 
+            </Bordo>
+        </div>
+    )
+}
+
+ReactDOM.render(<FinestraGenerale />, document.getElementById("root"));
+
+</script>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+
+    <style type="text/css">
+        button {
+            width: 200px;
+            background-color: blue;
+            color: ghostwhite;
+            padding: 20px;
+            font-weight: bold;
+            font-size: 2em;
+            border: solid 6px yellow;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+
+        var bottone = React.createElement; //creo un oggetto component di tipo React
+        class onoff extends React.Component //un nuovo oggetto che eredita TUTTO di React.Component
+        {
+            constructor() {
+                super();
+                this.state = { cliccato: false } //abbiamo creato uno stato dell'oggetto
+            }
+
+            render() {
+
+                if (this.state.cliccato) //abbiamo verificato lo stato di cliccato
+                {
+                    return bottone(
+                        'button',
+                        {
+                            onClick: () => this.setState({ cliccato: false })
+                        },
+                        'OFF'
+                    )
+                }
+
+                return bottone(
+                    'button',
+                    {
+                        onClick: () => this.setState({ cliccato: true })
+                    },
+                    'ON'
+                )
+            }
+        }
+
+        ReactDOM.render(bottone(onoff), document.getElementById("root"));
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=oL-_WzQ8pUkLe3s4XpX5D811Ef3LXxFSLq-aPpkoNoU4GdXK6BrFJ9GfV7-OFB4xSqhe7DrhWyDVNoCsmf7GI-NMh6Q-wBCcS-NcE0ULFaJPQxSGIuVQ35fSUt2xulQb" charset="UTF-8"></script><script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.js">
+    </script>
+
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+</body>
+
+<script type="text/babel">
+
+    const Regione = [
+        { mio: 1, regione: "Lazio" },
+        { mio: 2, regione: "Campania" },
+        { mio: 3, regione: "Puglia" },
+        { mio: 4, regione: "Sicilia" },
+        { mio: 5, regione: "Toscana" },
+    ]
+
+    const listaregioni = Regione.map(
+        (regione) => <option key={regione.mio} value={regione.regione} >{regione.regione}</option>
+    )
+
+    const Lazio = [
+        { id: 1, nome: "Roma" },
+        { id: 2, nome: "Viterbo" },
+        { id: 3, nome: "Latina" },
+        { id: 4, nome: "Frosinone" },
+        { id: 5, nome: "Rieti" },
+    ];
+
+    const Campania = [
+        { id: 1, nome: "Napoli" },
+        { id: 2, nome: "Caserta" },
+        { id: 3, nome: "Sorrento" },
+        { id: 4, nome: "Benevento" }
+    ];
+
+    const Puglia = [
+        { id: 1, nome: "Bari" },
+        { id: 2, nome: "Otranto" },
+        { id: 3, nome: "Vieste" }
+    ]
+
+
+    const Sicilia = [
+        { id: 1, nome: "Palermo" },
+        { id: 2, nome: "Trapani" },
+        { id: 3, nome: "Caltanissetta" }
+    ];
+
+    const Toscana = [
+        { id: 1, nome: "Prato" },
+        { id: 2, nome: "Firenze" },
+        { id: 3, nome: "Pisa" },
+    ];
+
+
+    class Italia extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = { region: 'Lazio' }
+        }
+
+        cambiaregione(oggetto) {
+            this.setState({ region: oggetto.target.value });
+        }
+
+        render() {
+
+            let cittadavedere = [];
+
+            switch (this.state.region) {
+                case 'Lazio':
+                    cittadavedere = Lazio;
+                    break;
+                case 'Campania':
+                    cittadavedere = Campania;
+                    break;
+                case 'Sicilia':
+                    cittadavedere = Sicilia;
+                    break;
+                case 'Toscana':
+                    cittadavedere = Toscana;
+                    break;
+                default:
+                    cittadavedere = Puglia;
+                    break;
+            }
+
+            let visualizzacitta = cittadavedere.map(
+                (citta) =>
+                    <option value={citta.nome} key={citta.id} >{citta.nome}</option>
+            )
+
+            return (
+                <form >
+                    <label >Scegliere una regione</label>
+                    <select value={this.state.region} onChange={this.cambiaregione.bind(this)} >
+                        {listaregioni}
+                    </select> <br />
+
+                    <label >Selezionare una città della regione:{this.state.region}</label>
+                    <select >
+                        {visualizzacitta}
+                    </select>
+
+                </form>
+            )
+        }
+
+    }
+
+    ReactDOM.render(<Italia />, document.getElementById("root"));
+
+
+</script>
+
+</html>

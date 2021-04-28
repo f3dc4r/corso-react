@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function Treno(numero_passeggeri, stazione_partenza, stazione_arrivo) {
+            this.numero_passeggeri = numero_passeggeri;
+            this.stazione_partenza = stazione_partenza;
+            this.stazione_arrivo = stazione_arrivo;
+            this.vagoni = function(){
+                return numero_passeggeri / 20;
+            }
+        }
+
+        function Persona(anni, nome){
+            this.anni = anni;
+            this.nome = nome;
+            this.tipo = function(){
+                return anni > 17 ? "Sei maggiorenne" : "Sei minorenne";    
+            }
+            this.stipendio=function (stipendioannuale){
+                return `Lo stipendio annuale percepito è: ${anni * stipendioannuale}`;
+            }
+        }
+
+        var romabari = new Treno(500, "Roma", "Bari");
+        var napolivenezia = new Treno(600, "Napoli", "Venezia");
+
+        console.log(romabari.numero_passeggeri);
+        console.log(napolivenezia.numero_passeggeri);
+
+        console.log(romabari instanceof Treno);
+
+        Treno.prototype.nomeconducente = "Mario Rossi";
+
+        console.log(romabari.nomeconducente);
+        console.log(napolivenezia.nomeconducente);
+
+        napolivenezia.nomeconducente = "Giorgio Verdi";
+
+    console.log(napolivenezia.nomeconducente);
+
+    napolivenezia.costobiglietto = 120;
+
+    console.log(romabari.vagoni() + " - " + napolivenezia.vagoni())
+
+    var nonno = new Persona(85, "Adalberto");
+    console.log(nonno.tipo());
+
+    var bimbo = new Persona(12, "Stefania");
+    console.log(bimbo.tipo());
+
+    console.log(nonno.stipendio(10000));
+
+    </script>
+
+</body>
+
+</html>
